@@ -2,7 +2,7 @@ Summary:	TURBA - Address book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0.2
-Release:	1.2
+Release:	1.3
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -103,10 +103,12 @@ fi
 if [ "$1" = 1 ]; then
 %banner %{name} -e <<EOF
 IMPORTANT:
-If you are installing for the first time, you must now
+If you are installing for the first time, You must need to
 create the TURBA database tables. Look into directory
-/usr/share/doc/%{name}-%{version}/drivers
+/usr/share/doc/%{name}-%{version}/sql
 to find out how to do this for your database.
+
+for LDAP backend you need php-ldap package.
 
 EOF
 fi
@@ -144,7 +146,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README docs/* scripts/*.reg scripts/ldap
+%doc README docs/* scripts/*.reg scripts/ldap scripts/sql
 %attr(770,root,http) %dir %{_sysconfdir}/%{name}
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/apache-%{name}.conf
 %attr(660,root,http) %config(noreplace) %{_sysconfdir}/%{name}/*.php
