@@ -1,22 +1,23 @@
 #
+%define		_rc	rc3
 %include	/usr/lib/rpm/macros.php
 Summary:	TURBA - Adress book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
-Version:	1.2.2
-Release:	2
+Version:	2.0
+Release:	0.%{_rc}.1
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
-Source0:	http://ftp.horde.org/pub/turba/%{name}-%{version}.tar.gz
-# Source0-md5: 27d9ebbe6723dcb0e4aa61045feb60b0
+Source0:	http://ftp.horde.org/pub/turba/%{name}-%{version}-%{_rc}.tar.gz
+# Source0-md5:	2b25b259014f8007b6ccb47ecd54b05c
 Source1:	%{name}.conf
 URL:		http://www.horde.org/turba/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 PreReq:		apache
 Requires(post):	grep
-Requires:	horde >= 2.0
+Requires:	horde >= 3.0
 Requires:	php-xml >= 4.1.0
 Obsoletes:	horde-addons-turba
 BuildArch:	noarch
@@ -55,16 +56,15 @@ Public License. Je¿eli chcesz siê dowiedzieæ czego¶ wiêcej (tak¿e help
 do IMP-a) zajrzyj na stronê http://www.horde.org/ .
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-%{_rc}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{apachedir},%{confdir}/turba} \
-	$RPM_BUILD_ROOT%{hordedir}/turba/{graphics,lib,locale,templates,scripts}
+	$RPM_BUILD_ROOT%{hordedir}/turba/{lib,locale,templates,scripts}
 
 cp -pR	*.php			$RPM_BUILD_ROOT%{hordedir}/turba
 cp -pR  config/*.dist           $RPM_BUILD_ROOT%{confdir}/turba
-cp -pR  graphics/*              $RPM_BUILD_ROOT%{hordedir}/turba/graphics
 cp -pR  lib/*                   $RPM_BUILD_ROOT%{hordedir}/turba/lib
 cp -pR  locale/*                $RPM_BUILD_ROOT%{hordedir}/turba/locale
 cp -pR  templates/*             $RPM_BUILD_ROOT%{hordedir}/turba/templates
@@ -121,10 +121,9 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README docs/* scripts/*.reg scripts/drivers scripts/ldap
+%doc README docs/* scripts/*.reg scripts/ldap
 %dir %{hordedir}/%{name}
 %attr(640,root,http) %{hordedir}/%{name}/*.php
-%attr(750,root,http) %{hordedir}/%{name}/graphics
 %attr(750,root,http) %{hordedir}/%{name}/lib
 %attr(750,root,http) %{hordedir}/%{name}/locale
 %attr(750,root,http) %{hordedir}/%{name}/templates
