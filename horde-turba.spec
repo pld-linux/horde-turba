@@ -2,7 +2,7 @@ Summary:	TURBA - Adress book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0
-Release:	0.2
+Release:	0.3
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -57,13 +57,15 @@ do IMP-a) zajrzyj na stronê http://www.horde.org/ .
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{apachedir},%{confdir}/turba} \
-	$RPM_BUILD_ROOT%{hordedir}/turba/{lib,locale,templates,scripts}
+	$RPM_BUILD_ROOT%{hordedir}/turba/{lib,locale,templates,themes,scripts}
 
 cp -pR	*.php			$RPM_BUILD_ROOT%{hordedir}/turba
 cp -pR  config/*.dist           $RPM_BUILD_ROOT%{confdir}/turba
+cp -pR  config/*.xml           $RPM_BUILD_ROOT%{confdir}/turba
 cp -pR  lib/*                   $RPM_BUILD_ROOT%{hordedir}/turba/lib
 cp -pR  locale/*                $RPM_BUILD_ROOT%{hordedir}/turba/locale
 cp -pR  templates/*             $RPM_BUILD_ROOT%{hordedir}/turba/templates
+cp -pR  themes/*             $RPM_BUILD_ROOT%{hordedir}/turba/themes
 
 cp -p   config/.htaccess        $RPM_BUILD_ROOT%{confdir}/turba
 cp -p   locale/.htaccess        $RPM_BUILD_ROOT%{hordedir}/turba/locale
@@ -123,10 +125,12 @@ fi
 %attr(750,root,http) %{hordedir}/%{name}/lib
 %attr(750,root,http) %{hordedir}/%{name}/locale
 %attr(750,root,http) %{hordedir}/%{name}/templates
+%attr(750,root,http) %{hordedir}/%{name}/themes
 
 %attr(750,root,http) %dir %{confdir}/%{name}
 %dir %{hordedir}/%{name}/config
 %attr(640,root,http) %{confdir}/%{name}/*.dist
 %attr(640,root,http) %{confdir}/%{name}/.htaccess
 %attr(640,root,http) %config(noreplace) %{apachedir}/%{name}.conf
-%attr(640,root,http) %config(noreplace) %{confdir}/%{name}/*.php
+%attr(660,root,http) %config(noreplace) %{confdir}/%{name}/*.php
+%attr(640,root,http) %config(noreplace) %{confdir}/%{name}/*.xml
