@@ -103,7 +103,7 @@ fi
 if [ "$1" = 1 ]; then
 %banner %{name} -e <<EOF
 IMPORTANT:
-If you are installing for the first time, You must need to
+If you are installing for the first time, You may need to
 create the TURBA database tables. Look into directory
 /usr/share/doc/%{name}-%{version}/sql
 to find out how to do this for your database.
