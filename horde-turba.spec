@@ -131,7 +131,7 @@ fi
 %attr(750,root,http) %{hordedir}/%{name}/templates
 %attr(750,root,http) %{hordedir}/%{name}/themes
 
-%attr(750,root,http) %dir %{confdir}/%{name}
+%attr(770,root,http) %dir %{confdir}/%{name}
 %dir %{hordedir}/%{name}/config
 %attr(640,root,http) %{confdir}/%{name}/*.dist
 %attr(640,root,http) %{confdir}/%{name}/.htaccess
