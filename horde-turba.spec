@@ -2,7 +2,7 @@ Summary:	TURBA - Address book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0.2
-Release:	1.3
+Release:	1.4
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -12,9 +12,9 @@ Source0:	http://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
 Source1:	%{name}.conf
 Source2:	%{name}-trans.mo
 URL:		http://www.horde.org/turba/
-Requires:		apache
 BuildRequires:	rpmbuild(macros) >= 1.177
 Requires(triggerpreun):	sed >= 4.0
+Requires:	apache >= 1.3.33-2
 Requires:	horde >= 3.0
 Requires:	php-xml >= 4.1.0
 Obsoletes:	horde-addons-turba
@@ -71,6 +71,8 @@ for i in config/*.dist; do
 done
 echo "<?php ?>" > 		$RPM_BUILD_ROOT%{_sysconfdir}/%{name}/conf.php
 cp -pR  config/*.xml            $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/conf.php.bak
+
 cp -pR  lib/*                   $RPM_BUILD_ROOT%{_appdir}/lib
 cp -pR  locale/*                $RPM_BUILD_ROOT%{_appdir}/locale
 cp -pR  templates/*             $RPM_BUILD_ROOT%{_appdir}/templates
@@ -149,7 +151,9 @@ fi
 %doc README docs/* scripts/*.reg scripts/ldap scripts/sql
 %attr(770,root,http) %dir %{_sysconfdir}/%{name}
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/apache-%{name}.conf
-%attr(660,root,http) %config(noreplace) %{_sysconfdir}/%{name}/*.php
+%attr(660,root,http) %config(noreplace) %{_sysconfdir}/%{name}/conf.php
+%attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{name}/[^c]*.php
+%ghost %{_sysconfdir}/%{name}/*.php.bak
 %attr(640,root,http) %{_sysconfdir}/%{name}/*.xml
 
 %dir %{_appdir}
