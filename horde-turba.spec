@@ -1,14 +1,13 @@
 # TODO:
 # - move configs to /etc
 # - trigger to move configs
-# - fix %post to be like in phpMyAdmin
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	TURBA - Adress book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	1.2.2
-Release:	1.1
+Release:	1.2
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -20,7 +19,6 @@ URL:		http://www.horde.org/turba/
 BuildRequires:  rpm-php-pearprov >= 4.0.2-98
 PreReq:         apache
 Requires(post):	grep
-Requires(post,preun):	perl
 Requires:       horde >= 2.0
 Requires:	php-xml >= 4.1.0
 Obsoletes:	horde-mysql
@@ -90,27 +88,31 @@ for i in *.dist; do cp $i `basename $i .dist`; done
 rm -rf $RPM_BUILD_ROOT
 
 %post
-echo "Changing apache configuration"
-grep -i 'Include.*turba.conf$' %{apachedir}/httpd.conf/10_httpd.conf >/dev/null 2>&1
-
-if [ $? -eq 0 ]; then
-	perl -pi -e 's/^#+// if (/Include.*turba.conf$/i);' %{apachedir}/httpd.conf/10_httpd.conf
-else
-	echo "Include %{apachedir}/horde.conf" >>%{apachedir}/httpd.conf/10_httpd.conf
-fi
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/httpd start\" to start http daemon."
+if [ -f /etc/httpd/httpd.conf ] && ! grep -q "^Include.*%{name}.conf" /etc/httpd/httpd.conf; then
+	echo "Include /etc/httpd/%{name}.conf" >> /etc/httpd/httpd.conf
+	if [ -f /var/lock/subsys/httpd ]; then
+		/usr/sbin/apachectl restart 1>&2
+	fi
+elif [ -d /etc/httpd/httpd.conf ]; then
+	ln -sf /etc/httpd/%{name}.conf /etc/httpd/httpd.conf/99_%{name}.conf
+	if [ -f /var/lock/subsys/httpd ]; then
+		/usr/sbin/apachectl restart 1>&2
+	fi
 fi
 
-%postun
-echo "Changing apache configuration"
-perl -pi -e 's/^/#/ if (/^Include.*turba.conf$/i);' %{apachedir}/httpd.conf/10_httpd.conf
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/httpd start\" to start http daemon."
+%preun
+if [ "$1" = "0" ]; then
+	umask 027
+	if [ -d /etc/httpd/httpd.conf ]; then
+	    rm -f /etc/httpd/httpd.conf/99_%{name}.conf
+	else
+		grep -v "^Include.*%{name}.conf" /etc/httpd/httpd.conf > \
+			/etc/httpd/httpd.conf.tmp
+		mv -f /etc/httpd/httpd.conf.tmp /etc/httpd/httpd.conf
+	fi
+	if [ -f /var/lock/subsys/httpd ]; then
+	    /usr/sbin/apachectl restart 1>&2
+	fi
 fi
 
 %files
