@@ -12,7 +12,7 @@ Source0:	http://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
 Source1:	%{name}.conf
 Source2:	%{name}-trans.mo
 URL:		http://www.horde.org/turba/
-PreReq:		apache
+Requires:		apache
 BuildRequires:	rpmbuild(macros) >= 1.177
 Requires(triggerpreun):	sed >= 4.0
 Requires:	horde >= 3.0
