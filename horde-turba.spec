@@ -62,7 +62,7 @@ install -d $RPM_BUILD_ROOT{%{apachedir},%{confdir}/turba} \
 cp -pR	*.php			$RPM_BUILD_ROOT%{hordedir}/turba
 cp -pR  config/*.dist           $RPM_BUILD_ROOT%{confdir}/turba
 cp -pR  config/*.xml            $RPM_BUILD_ROOT%{confdir}/turba
-echo "<?php ?>" > $RPM_BUILD_ROOT%{confdir}/turba/conf.php
+echo "<?php ?>" > 		$RPM_BUILD_ROOT%{confdir}/turba/conf.php
 cp -pR  lib/*                   $RPM_BUILD_ROOT%{hordedir}/turba/lib
 cp -pR  locale/*                $RPM_BUILD_ROOT%{hordedir}/turba/locale
 cp -pR  templates/*             $RPM_BUILD_ROOT%{hordedir}/turba/templates
