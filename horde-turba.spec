@@ -3,7 +3,7 @@ Summary:	TURBA - Address book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0.2
-Release:	1.12
+Release:	1.15
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -16,6 +16,7 @@ URL:		http://www.horde.org/turba/
 BuildRequires:	rpmbuild(macros) >= 1.177
 Requires(triggerpreun):	sed >= 4.0
 Requires:	apache >= 1.3.33-2
+Requires:	apache(mod_access)
 Requires:	horde >= 3.0
 Requires:	php-xml >= 4.1.0
 Obsoletes:	horde-addons-turba
@@ -127,6 +128,7 @@ for LDAP backend you need php-ldap package.
 EOF
 fi
 
+%postun
 if [ "$1" = "0" ]; then
 	# apache1
 	if [ -d %{_apache1dir}/conf.d ]; then
