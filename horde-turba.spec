@@ -99,6 +99,14 @@ elif [ -d /etc/httpd/httpd.conf ]; then
 	fi
 fi
 
+cat <<_EOF2_
+IMPORTANT:
+If you are installing for the first time, you must now
+create the TURBA database tables. Look into directory
+/usr/share/doc/%{name}-%{version}/drivers
+to find out how to do this for your database.
+_EOF2_
+
 %preun
 if [ "$1" = "0" ]; then
 	umask 027
