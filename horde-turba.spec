@@ -1,14 +1,14 @@
 Summary:	TURBA - Adress book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
-Version:	2.0.1
+Version:	2.0.2
 Release:	1
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Source0:	http://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
-# Source0-md5:	98166e2dce4654cc9738eaa8760810cb
+# Source0-md5:	e3b04476d9d18f4c9774f5da76a03f22
 Source1:	%{name}.conf
 Source2:	%{name}-trans.mo
 URL:		http://www.horde.org/turba/
