@@ -22,6 +22,8 @@ Obsoletes:	horde-addons-turba
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define         _noautoreq      'pear(XML/WBXML.*)' 'pear(Horde.*)' 'pear(Text/.*)' 'pear(Net/IMSP.*)'
+
 %define		apachedir	/etc/httpd
 %define		hordedir	/usr/share/horde
 %define		confdir		/etc/horde.org
