@@ -21,8 +21,7 @@ PreReq:         apache
 Requires(post):	grep
 Requires:       horde >= 2.0
 Requires:	php-xml >= 4.1.0
-Obsoletes:	horde-mysql
-Obsoletes:	horde-pgsql
+Obsoletes:	horde-addons-turba
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
