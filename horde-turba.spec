@@ -4,7 +4,7 @@ Summary:	TURBA - Adress book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0
-Release:	0.1
+Release:	0.2
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -22,7 +22,7 @@ Obsoletes:	horde-addons-turba
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _noautoreq      'pear(XML/WBXML.*)' 'pear(Horde.*)' 'pear(Text/.*)' 'pear(Net/IMSP.*)'
+%define         _noautoreq      'pear(XML/WBXML.*)' 'pear(Horde.*)' 'pear(Text/.*)' 'pear(Net/IMSP.*)' 'pear(\.\./lib.*)'
 
 %define		apachedir	/etc/httpd
 %define		hordedir	/usr/share/horde
