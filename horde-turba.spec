@@ -4,7 +4,7 @@ Summary:	TURBA - Adress book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	1.2.2
-Release:	1.5
+Release:	1.6
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -60,7 +60,7 @@ do IMP-a) zajrzyj na stronê http://www.horde.org/ .
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{apachedir},%{confdir}/turba} \
-	$RPM_BUILD_ROOT%{hordedir}/turba/{config,graphics,lib,locale,templates,scripts}
+	$RPM_BUILD_ROOT%{hordedir}/turba/{graphics,lib,locale,templates,scripts}
 
 cp -pR	*.php			$RPM_BUILD_ROOT%{hordedir}/turba
 cp -pR  config/*.dist           $RPM_BUILD_ROOT%{confdir}/turba
