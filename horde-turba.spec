@@ -2,7 +2,7 @@ Summary:	TURBA - Address book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0.2
-Release:	1.5
+Release:	1.8
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -21,11 +21,12 @@ Obsoletes:	horde-addons-turba
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		apachedir	/etc/httpd
+# horde accesses it directly in help->about
+%define		_noautocompressdoc  CREDITS
 
 %define		hordedir	/usr/share/horde
-%define		_appdir		%{hordedir}/%{name}
 %define		_sysconfdir	/etc/horde.org
+%define		_appdir		%{hordedir}/%{name}
 %define		_apache1dir	/etc/apache
 %define		_apache2dir	/etc/httpd
 
@@ -66,7 +67,7 @@ rm -f test.php
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{name} \
-	$RPM_BUILD_ROOT%{_appdir}/{lib,locale,templates,themes,scripts}
+	$RPM_BUILD_ROOT%{_appdir}/{docs,lib,locale,templates,themes}
 
 cp -pR	*.php			$RPM_BUILD_ROOT%{_appdir}
 for i in config/*.dist; do
@@ -81,7 +82,9 @@ cp -pR  locale/*                $RPM_BUILD_ROOT%{_appdir}/locale
 cp -pR  templates/*             $RPM_BUILD_ROOT%{_appdir}/templates
 cp -pR  themes/*                $RPM_BUILD_ROOT%{_appdir}/themes
 
-ln -s	%{_sysconfdir}/%{name} 	$RPM_BUILD_ROOT%{_appdir}/config
+ln -s %{_sysconfdir}/%{name} 	$RPM_BUILD_ROOT%{_appdir}/config
+ln -s %{_defaultdocdir}/%{name}-%{version}/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
+
 install %{SOURCE1} 		$RPM_BUILD_ROOT%{_sysconfdir}/apache-%{name}.conf
 
 install %{SOURCE2} 		$RPM_BUILD_ROOT%{_appdir}/locale/pl_PL/LC_MESSAGES/turba.mo
@@ -160,8 +163,9 @@ fi
 %attr(640,root,http) %{_sysconfdir}/%{name}/*.xml
 
 %dir %{_appdir}
-%{_appdir}/config
 %{_appdir}/*.php
+%{_appdir}/config
+%{_appdir}/docs
 %{_appdir}/lib
 %{_appdir}/locale
 %{_appdir}/templates
