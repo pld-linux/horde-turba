@@ -1,17 +1,21 @@
-#
-%define		_rc	rc3
+
+%define name turba
+%define version 2.0.1
+%define pre rc1
+%define fname %{name}-h3-%{version}-%{pre}
+
 %include	/usr/lib/rpm/macros.php
 Summary:	TURBA - Adress book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
-Name:		turba
-Version:	2.0
-Release:	0.%{_rc}.1
+Name:           %{name}
+Version:        %{version}
+Release:        0.%{pre}.1
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
-Source0:	http://ftp.horde.org/pub/turba/%{name}-%{version}-%{_rc}.tar.gz
-# Source0-md5:	2b25b259014f8007b6ccb47ecd54b05c
+Source0:	http://ftp.horde.org/pub/turba/%{fname}.tar.gz
+# Source0-md5:	dc441a8ce2063c78d9e4592bcb92b3b5
 Source1:	%{name}.conf
 URL:		http://www.horde.org/turba/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
@@ -56,7 +60,7 @@ Public License. Je¿eli chcesz siê dowiedzieæ czego¶ wiêcej (tak¿e help
 do IMP-a) zajrzyj na stronê http://www.horde.org/ .
 
 %prep
-%setup -q -n %{name}-%{version}-%{_rc}
+%setup -q -n %{fname}
 
 %install
 rm -rf $RPM_BUILD_ROOT
