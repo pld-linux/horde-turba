@@ -7,7 +7,7 @@ License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
-Source0:	http://ftp.horde.org/pub/turba/turba-h3-2.0.tar.gz
+Source0:	http://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
 # Source0-md5:	23f143958fb72b9bf94a04a14e1cfd92
 Source1:	%{name}.conf
 URL:		http://www.horde.org/turba/
@@ -61,18 +61,18 @@ install -d $RPM_BUILD_ROOT{%{apachedir},%{confdir}/turba} \
 
 cp -pR	*.php			$RPM_BUILD_ROOT%{hordedir}/turba
 cp -pR  config/*.dist           $RPM_BUILD_ROOT%{confdir}/turba
-cp -pR  config/*.xml           $RPM_BUILD_ROOT%{confdir}/turba
+cp -pR  config/*.xml            $RPM_BUILD_ROOT%{confdir}/turba
 cp -pR  lib/*                   $RPM_BUILD_ROOT%{hordedir}/turba/lib
 cp -pR  locale/*                $RPM_BUILD_ROOT%{hordedir}/turba/locale
 cp -pR  templates/*             $RPM_BUILD_ROOT%{hordedir}/turba/templates
-cp -pR  themes/*             $RPM_BUILD_ROOT%{hordedir}/turba/themes
+cp -pR  themes/*                $RPM_BUILD_ROOT%{hordedir}/turba/themes
 
 cp -p   config/.htaccess        $RPM_BUILD_ROOT%{confdir}/turba
 cp -p   locale/.htaccess        $RPM_BUILD_ROOT%{hordedir}/turba/locale
 cp -p   templates/.htaccess     $RPM_BUILD_ROOT%{hordedir}/turba/templates
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{apachedir}
-ln -fs %{confdir}/%{name} $RPM_BUILD_ROOT%{hordedir}/%{name}/config
+install %{SOURCE1} 		$RPM_BUILD_ROOT%{apachedir}
+ln -fs %{confdir}/%{name} 	$RPM_BUILD_ROOT%{hordedir}/%{name}/config
 
 # bit unclean..
 cd $RPM_BUILD_ROOT%{confdir}/turba
