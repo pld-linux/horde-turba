@@ -2,7 +2,7 @@ Summary:	TURBA - Address book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0.2
-Release:	1.9
+Release:	1.10
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -93,6 +93,10 @@ install %{SOURCE2} 		$RPM_BUILD_ROOT%{_appdir}/locale/pl_PL/LC_MESSAGES/turba.mo
 rm -rf $RPM_BUILD_ROOT
 
 %post
+if [ ! -f %{_sysconfdir}/%{name}/conf.php.bak ]; then
+	install /dev/null -o root -g http -m660 %{_sysconfdir}/%{name}/conf.php.bak
+fi
+
 # apache1
 if [ -d %{_apache1dir}/conf.d ]; then
 	ln -sf %{_sysconfdir}/apache-%{name}.conf %{_apache1dir}/conf.d/99_%{name}.conf
@@ -158,7 +162,7 @@ fi
 %attr(750,root,http) %dir %{_sysconfdir}/%{name}
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/apache-%{name}.conf
 %attr(660,root,http) %config(noreplace) %{_sysconfdir}/%{name}/conf.php
-%attr(660,root,http) %config(noreplace) %{_sysconfdir}/%{name}/conf.php.bak
+%attr(660,root,http) %config(noreplace) %ghost %{_sysconfdir}/%{name}/conf.php.bak
 %attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{name}/[!c]*.php
 %attr(640,root,http) %{_sysconfdir}/%{name}/*.xml
 
