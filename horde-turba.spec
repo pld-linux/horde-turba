@@ -1,5 +1,3 @@
-#
-%include	/usr/lib/rpm/macros.php
 Summary:	TURBA - Adress book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
@@ -13,7 +11,6 @@ Source0:	http://ftp.horde.org/pub/turba/turba-h3-2.0.tar.gz
 # Source0-md5:	23f143958fb72b9bf94a04a14e1cfd92
 Source1:	%{name}.conf
 URL:		http://www.horde.org/turba/
-BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 PreReq:		apache
 Requires(post):	grep
 Requires:	horde >= 3.0
@@ -21,8 +18,6 @@ Requires:	php-xml >= 4.1.0
 Obsoletes:	horde-addons-turba
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define         _noautoreq      'pear(XML/WBXML.*)' 'pear(Horde.*)' 'pear(Text/.*)' 'pear(Net/IMSP.*)' 'pear(\.\./lib.*)'
 
 %define		apachedir	/etc/httpd
 %define		hordedir	/usr/share/horde
