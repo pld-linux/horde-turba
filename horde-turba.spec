@@ -1,8 +1,9 @@
+%include	/usr/lib/rpm/macros.php
 Summary:	TURBA - Address book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0.2
-Release:	1.10
+Release:	1.12
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
@@ -23,6 +24,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # horde accesses it directly in help->about
 %define		_noautocompressdoc  CREDITS
+%define		_noautoreq	'pear(Horde.*)' 'pear(Net/IMSP.php)' 'pear(Net/IMSP/Utils.php)'
 
 %define		hordedir	/usr/share/horde
 %define		_sysconfdir	/etc/horde.org
