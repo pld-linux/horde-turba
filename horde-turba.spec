@@ -9,14 +9,14 @@ License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
-Source0:	http://ftp.horde.org/pub/turba/turba-%{version}.tar.gz
+Source0:	http://ftp.horde.org/pub/turba/%{name}-%{version}.tar.gz
 # Source0-md5: 27d9ebbe6723dcb0e4aa61045feb60b0
 Source1:	%{name}.conf
 URL:		http://www.horde.org/turba/
-BuildRequires:  rpm-php-pearprov >= 4.0.2-98
-PreReq:         apache
+BuildRequires:	rpm-php-pearprov >= 4.0.2-98
+PreReq:		apache
 Requires(post):	grep
-Requires:       horde >= 2.0
+Requires:	horde >= 2.0
 Requires:	php-xml >= 4.1.0
 Obsoletes:	horde-addons-turba
 BuildArch:	noarch
@@ -130,7 +130,7 @@ fi
 %attr(750,root,http) %{hordedir}/%{name}/templates
 
 %attr(750,root,http) %dir %{confdir}/%{name}
-%{hordedir}/%{name}/config
+%dir %{hordedir}/%{name}/config
 %attr(640,root,http) %{confdir}/%{name}/*.dist
 %attr(640,root,http) %{confdir}/%{name}/.htaccess
 %attr(640,root,http) %config(noreplace) %{apachedir}/%{name}.conf
