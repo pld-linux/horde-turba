@@ -6,7 +6,7 @@ Version:	2.0.2
 Release:	2
 License:	LGPL
 Vendor:		The Horde Project
-Group:		Applications/Mail
+Group:		Applications/WWW
 Requires:	%{name} = %{version}-%{release}
 Source0:	http://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
 # Source0-md5:	e3b04476d9d18f4c9774f5da76a03f22
