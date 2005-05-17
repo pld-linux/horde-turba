@@ -3,7 +3,7 @@ Summary:	TURBA - Address book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0.2
-Release:	2
+Release:	2.1
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/WWW
@@ -28,6 +28,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautoreq	'pear(Horde.*)' 'pear(Net/IMSP.php)' 'pear(Net/IMSP/Utils.php)'
 
 %define		hordedir	/usr/share/horde
+%define		schemadir	/usr/share/openldap/schema
 %define		_sysconfdir	/etc/horde.org
 %define		_appdir		%{hordedir}/%{name}
 %define		_apache1dir	/etc/apache
@@ -61,6 +62,19 @@ Projekt Horde tworzy aplikacje w PHP i dostarcza je na licencji GNU
 Public License. Je¿eli chcesz siê dowiedzieæ czego¶ wiêcej (tak¿e help
 do IMP-a) zajrzyj na stronê <http://www.horde.org/>.
 
+%package -n openldap-schema-rfc2739
+Summary:	LDAP schema for freebusy information
+Group:		Networking/Daemons
+Requires(post,postun):	sed >= 4.0
+Requires:	openldap-servers
+
+%description -n openldap-schema-rfc2739
+This package contains rfc2739.schema for openldap.
+
+To store freebusy information in the LDAP directory, you'll need the
+rfc2739.schema from
+<ftp://kalamazoolinux.org/pub/projects/awilliam/misc-ldap/>.
+
 %prep
 %setup -q -n %{name}-h3-%{version}
 
@@ -70,7 +84,8 @@ rm -f test.php
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{name} \
-	$RPM_BUILD_ROOT%{_appdir}/{docs,lib,locale,templates,themes}
+	$RPM_BUILD_ROOT%{_appdir}/{docs,lib,locale,templates,themes} \
+	$RPM_BUILD_ROOT%{schemadir}
 
 cp -pR	*.php			$RPM_BUILD_ROOT%{_appdir}
 for i in config/*.dist; do
@@ -91,6 +106,8 @@ ln -s %{_defaultdocdir}/%{name}-%{version}/CREDITS $RPM_BUILD_ROOT%{_appdir}/doc
 install %{SOURCE1} 		$RPM_BUILD_ROOT%{_sysconfdir}/apache-%{name}.conf
 
 install %{SOURCE2} 		$RPM_BUILD_ROOT%{_appdir}/locale/pl_PL/LC_MESSAGES/turba.mo
+
+install scripts/ldap/rfc2739.schema $RPM_BUILD_ROOT%{schemadir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -123,7 +140,9 @@ create the TURBA database tables. Look into directory
 /usr/share/doc/%{name}-%{version}/sql
 to find out how to do this for your database.
 
-for LDAP backend you need php-ldap package.
+For LDAP backend you need php-ldap package.
+If you want to store freebusy information in LDAP database, also
+install openldap-schema-rfc2739 package.
 
 EOF
 fi
@@ -143,6 +162,33 @@ if [ "$1" = "0" ]; then
 		if [ -f /var/lock/subsys/httpd ]; then
 			/etc/rc.d/init.d/httpd restart 1>&2
 		fi
+	fi
+fi
+
+%post -n openldap-schema-rfc2739
+if ! grep -q %{schemadir}/rfc2739.schema /etc/openldap/slapd.conf; then
+	sed -i -e '
+		/^include.*local.schema/{
+			i\
+include		%{schemadir}/rfc2739.schema
+		}
+	' /etc/openldap/slapd.conf
+fi
+
+if [ -f /var/lock/subsys/ldap ]; then
+    /etc/rc.d/init.d/ldap restart >&2
+fi
+
+%postun -n openldap-schema-rfc2739
+if [ "$1" = "0" ]; then
+	if grep -q %{schemadir}/rfc2739.schema /etc/openldap/slapd.conf; then
+		sed -i -e '
+		/^include.*\/usr\/share\/openldap\/schema\/rfc2739.schema/d
+		' /etc/openldap/slapd.conf
+	fi
+
+	if [ -f /var/lock/subsys/ldap ]; then
+		/etc/rc.d/init.d/ldap restart >&2 || :
 	fi
 fi
 
@@ -178,3 +224,7 @@ fi
 %{_appdir}/locale
 %{_appdir}/templates
 %{_appdir}/themes
+
+%files -n openldap-schema-rfc2739
+%defattr(644,root,root,755)
+%{schemadir}/*.schema
