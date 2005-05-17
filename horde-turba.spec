@@ -73,7 +73,7 @@ This package contains rfc2739.schema for openldap.
 
 To store freebusy information in the LDAP directory, you'll need the
 rfc2739.schema from
-<ftp://kalamazoolinux.org/pub/projects/awilliam/misc-ldap/>.
+<ftp://kalamazoolinux.org/pub/projects/awilliam/ldap/schema/>.
 
 %prep
 %setup -q -n %{name}-h3-%{version}
