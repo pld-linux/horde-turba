@@ -64,6 +64,7 @@ do IMP-a) zajrzyj na stronê <http://www.horde.org/>.
 
 %package -n openldap-schema-rfc2739
 Summary:	LDAP schema for freebusy information
+Summary(pl):	Schemat LDAP do informacji freebusy
 Group:		Networking/Daemons
 Requires(post,postun):	sed >= 4.0
 Requires:	openldap-servers
@@ -73,6 +74,13 @@ This package contains rfc2739.schema for openldap.
 
 To store freebusy information in the LDAP directory, you'll need the
 rfc2739.schema from
+<ftp://kalamazoolinux.org/pub/projects/awilliam/ldap/schema/>.
+
+%description -n openldap-schema-rfc2739 -l pl
+Ten pakiet zawiera schemat rfc2739.schema dla openldap.
+
+Aby przechowywaæ informacje freebusy w bazie LDAP potrzebny jest
+schemat rfc2739.schema z
 <ftp://kalamazoolinux.org/pub/projects/awilliam/ldap/schema/>.
 
 %prep
