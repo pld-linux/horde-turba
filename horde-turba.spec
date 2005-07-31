@@ -2,14 +2,16 @@
 Summary:	TURBA - Address book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
-Version:	2.0.2
-Release:	2.2
+%define	_rc rc1
+Version:	2.0.3
+Release:	%{_rc}.1
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/WWW
 Requires:	%{name} = %{version}-%{release}
-Source0:	http://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
-# Source0-md5:	e3b04476d9d18f4c9774f5da76a03f22
+#Source0:	ftp://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
+Source0:	ftp://ftp.horde.org/pub/turba/%{name}-h3-%{version}-%{_rc}.tar.gz
+# Source0-md5:	8553958c983b44de7122775e5b9ab9d4
 Source1:	%{name}.conf
 Source2:	%{name}-trans.mo
 URL:		http://www.horde.org/turba/
@@ -82,7 +84,7 @@ schemat rfc2739.schema z
 <ftp://kalamazoolinux.org/pub/projects/awilliam/ldap/schema/>.
 
 %prep
-%setup -q -n %{name}-h3-%{version}
+%setup -q -n %{name}-h3-%{version}%{?_rc:-%{_rc}}
 
 # considered harmful (horde/docs/SECURITY)
 rm -f test.php
