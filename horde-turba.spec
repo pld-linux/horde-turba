@@ -1,17 +1,21 @@
+#define	_rc		rc1
+#define	_snap	2005-07-31
+%define	_rel	1
+#
 %include	/usr/lib/rpm/macros.php
 Summary:	TURBA - Address book for IMP
 Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
-%define	_rc rc1
 Version:	2.0.3
-Release:	%{_rc}.1
+Release:	%{?_rc:%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	LGPL
 Vendor:		The Horde Project
 Group:		Applications/WWW
 Requires:	%{name} = %{version}-%{release}
-#Source0:	ftp://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
-Source0:	ftp://ftp.horde.org/pub/turba/%{name}-h3-%{version}-%{_rc}.tar.gz
-# Source0-md5:	8553958c983b44de7122775e5b9ab9d4
+Source0:	ftp://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
+# Source0-md5:	315c5e1b3e635afed59c84ed4435eb95
+#Source0:	ftp://ftp.horde.org/pub/turba/%{name}-h3-%{version}-%{_rc}.tar.gz
+#Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{name}-HEAD-%{_snap}.tar.gz
 Source1:	%{name}.conf
 Source2:	%{name}-trans.mo
 URL:		http://www.horde.org/turba/
@@ -84,7 +88,7 @@ schemat rfc2739.schema z
 <ftp://kalamazoolinux.org/pub/projects/awilliam/ldap/schema/>.
 
 %prep
-%setup -q -n %{name}-h3-%{version}%{?_rc:-%{_rc}}
+%setup -q -n %{?_snap:%{name}}%{!?_snap:%{name}-h3-%{version}%{?_rc:-%{_rc}}}
 
 # considered harmful (horde/docs/SECURITY)
 rm -f test.php
