@@ -20,7 +20,7 @@ Source1:	%{name}.conf
 Source2:	%{name}-trans.mo
 URL:		http://www.horde.org/turba/
 BuildRequires:	rpmbuild(macros) >= 1.177
-Requires(triggerpreun):	sed >= 4.0
+Requires(triggerpostun):	sed >= 4.0
 Requires:	apache >= 1.3.33-2
 Requires:	apache(mod_access)
 Requires:	horde >= 3.0
