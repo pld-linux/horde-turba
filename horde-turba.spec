@@ -8,7 +8,7 @@ Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
 Name:		turba
 Version:	2.0.3
 Release:	%{?_rc:%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
-License:	LGPL
+License:	ASL
 Vendor:		The Horde Project
 Group:		Applications/WWW
 Requires:	%{name} = %{version}-%{release}
@@ -48,10 +48,6 @@ lists from your addressbooks, which are handled transparently by IMP
 and other Horde applications. And there are Horde API functions to add
 and search for contacts.
 
-The Horde Project writes web applications in PHP and releases them
-under the GNU Public License. For more information (including help
-with Horde and its modules) please visit <http://www.horde.org/>.
-
 %description -l pl
 Turba to kompletna aplikacja do podstawowego zarz±dzania kontaktami.
 Dostêpne i dobrze przetestowane s± backendy ustawieñ SQL, LDAP i
@@ -61,10 +57,6 @@ importowaæ/eksportowaæ z/do Pine, Mulberry, CSV, TSV i vCard. Mo¿na
 tworzyæ listy dystrybucyjne z ksi±¿ek adresowych, które s± obs³ugiwane
 w sposób przezroczysty przez IMP-a i inne aplikacje Horde. S± tak¿e
 funkcje API Horde do dodawania i wyszukiwania kontaktów.
-
-Projekt Horde tworzy aplikacje w PHP i dostarcza je na licencji GNU
-Public License. Je¿eli chcesz siê dowiedzieæ czego¶ wiêcej (tak¿e help
-do IMP-a) zajrzyj na stronê <http://www.horde.org/>.
 
 %package -n openldap-schema-rfc2739
 Summary:	LDAP schema for freebusy information
@@ -199,7 +191,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README docs/* scripts/*.reg scripts/ldap scripts/sql
+%doc LICENSE README docs/* scripts/*.reg scripts/ldap scripts/sql
 %attr(750,root,http) %dir %{_sysconfdir}/%{name}
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/apache-%{name}.conf
 %attr(660,root,http) %config(noreplace) %{_sysconfdir}/%{name}/conf.php
