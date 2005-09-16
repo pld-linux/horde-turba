@@ -1,5 +1,5 @@
 #define	_rc		rc1
-#define	_snap	2005-07-31
+%define	_snap	2005-08-25
 %define	_rel	1
 #
 %include	/usr/lib/rpm/macros.php
@@ -12,14 +12,16 @@ License:	ASL
 Vendor:		The Horde Project
 Group:		Applications/WWW
 Requires:	%{name} = %{version}-%{release}
-Source0:	ftp://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
-# Source0-md5:	315c5e1b3e635afed59c84ed4435eb95
+#Source0:	ftp://ftp.horde.org/pub/turba/%{name}-h3-%{version}.tar.gz
+Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{name}-HEAD-%{_snap}.tar.gz
+# Source0-md5:	dedab86cf74caf49f786f914f49ea8aa
 #Source0:	ftp://ftp.horde.org/pub/turba/%{name}-h3-%{version}-%{_rc}.tar.gz
-#Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{name}-HEAD-%{_snap}.tar.gz
 Source1:	%{name}.conf
 Source2:	%{name}-trans.mo
 URL:		http://www.horde.org/turba/
+BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.177
+BuildRequires:	tar >= 1:1.15.1
 Requires(triggerpostun):	sed >= 4.0
 Requires:	apache >= 1.3.33-2
 Requires:	apache(mod_access)
@@ -80,7 +82,8 @@ schemat rfc2739.schema z
 <ftp://kalamazoolinux.org/pub/projects/awilliam/ldap/schema/>.
 
 %prep
-%setup -q -n %{?_snap:%{name}}%{!?_snap:%{name}-h3-%{version}%{?_rc:-%{_rc}}}
+%setup -q -c -T -n %{?_snap:%{name}-%{_snap}}%{!?_snap:%{name}-%{version}%{?_rc:-%{_rc}}}
+tar zxf %{SOURCE0} --strip-components=1
 
 # considered harmful (horde/docs/SECURITY)
 rm -f test.php
