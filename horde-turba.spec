@@ -26,7 +26,7 @@ Requires(triggerpostun):	sed >= 4.0
 Requires:	apache >= 1.3.33-2
 Requires:	apache(mod_access)
 Requires:	horde >= 3.0
-Requires:	php-xml >= 4.1.0
+Requires:	php-xml >= 3:4.1.0
 Obsoletes:	horde-addons-turba
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
