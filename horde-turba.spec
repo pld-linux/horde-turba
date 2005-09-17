@@ -4,8 +4,8 @@
 %define	_rel	1
 #
 %include	/usr/lib/rpm/macros.php
-Summary:	TURBA - Address book for IMP
-Summary(pl):	TURBA - Ksi±¿ka adresowa dla IMP-a
+Summary:	Turba - Address book for IMP
+Summary(pl):	Turba - Ksi±¿ka adresowa dla IMP-a
 Name:		%{_hordeapp}
 Version:	2.1
 Release:	%{?_rc:1.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
@@ -124,7 +124,7 @@ if [ "$1" = 1 ]; then
 %banner %{name} -e <<EOF
 IMPORTANT:
 If you are installing for the first time, You may need to
-create the TURBA database tables. Look into directory
+create the Turba database tables. Look into directory
 /usr/share/doc/%{name}-%{version}/sql
 to find out how to do this for your database.
 
