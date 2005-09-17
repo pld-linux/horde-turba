@@ -1,12 +1,12 @@
 %define	_hordeapp turba
 %define	_snap	2005-08-25
 #define	_rc		rc1
-%define	_rel	1
+%define	_rel	0.1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
 Summary(pl):	Turba - Ksi±¿ka adresowa dla IMP-a
-Name:		%{_hordeapp}
+Name:		horde-%{_hordeapp}
 Version:	2.1
 Release:	%{?_rc:1.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	ASL
@@ -26,6 +26,7 @@ Requires:	apache(mod_access)
 Requires:	horde >= 3.0
 Requires:	php-xml >= 3:4.1.0
 Obsoletes:	horde-addons-turba
+Obsoletes:	%{_hordeapp}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
