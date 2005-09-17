@@ -1,5 +1,5 @@
 %define	_hordeapp turba
-%define	_snap	2005-08-25
+%define	_snap	2005-09-17
 #define	_rc		rc1
 %define	_rel	0.1
 #
@@ -13,7 +13,7 @@ License:	ASL
 Group:		Applications/WWW
 #Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
 Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{_hordeapp}-HEAD-%{_snap}.tar.gz
-# Source0-md5:	dedab86cf74caf49f786f914f49ea8aa
+# Source0-md5:	450f318cd4490866aa1a16b797b60176
 Source1:	%{_hordeapp}.conf
 Source2:	%{_hordeapp}-trans.mo
 URL:		http://www.horde.org/turba/
