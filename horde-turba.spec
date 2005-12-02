@@ -19,7 +19,7 @@ Source1:	%{_hordeapp}.conf
 Source2:	%{_hordeapp}-trans.mo
 URL:		http://www.horde.org/turba/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
-BuildRequires:	rpmbuild(macros) >= 1.177
+BuildRequires:	rpmbuild(macros) >= 1.264
 BuildRequires:	tar >= 1:1.15.1
 Requires(triggerpostun):	sed >= 4.0
 Requires:	apache(mod_access)
