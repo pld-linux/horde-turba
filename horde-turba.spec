@@ -163,20 +163,6 @@ if [ "$1" = "0" ]; then
 	fi
 fi
 
-%triggerpostun -- turba <= 1.2.2-2
-if [ -f /etc/httpd/httpd.conf ]; then
-	sed -i -e '/^Include.*turba.conf/d' /etc/httpd/httpd.conf
-fi
-
-if [ -f /etc/httpd/turba.conf.rpmsave ]; then
-	cp -f %{_sysconfdir}/apache.conf{,.rpmnew}
-	mv -f /etc/httpd/turba.conf.rpmsave %{_sysconfdir}/apache.conf
-fi
-
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd restart 1>&2
-fi
-
 %triggerin -- apache1
 %webapp_register apache %{_webapp}
 
@@ -188,6 +174,18 @@ fi
 
 %triggerun -- apache >= 2.0.0
 %webapp_unregister httpd %{_webapp}
+
+%triggerpostun -- turba <= 1.2.2-2
+if [ -f /etc/httpd/httpd.conf ]; then
+	sed -i -e '/^Include.*turba.conf/d' /etc/httpd/httpd.conf
+fi
+
+if [ -f /etc/httpd/turba.conf.rpmsave ]; then
+	cp -f %{_sysconfdir}/apache.conf{,.rpmnew}
+	mv -f /etc/httpd/turba.conf.rpmsave %{_sysconfdir}/apache.conf
+fi
+
+%service -q httpd restart
 
 %triggerpostun -- horde-%{_hordeapp} < 2.0.4-1.3, %{_hordeapp}
 for i in attributes.php conf.php menu.php prefs.php sources.php; do
