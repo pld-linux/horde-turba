@@ -27,8 +27,8 @@ Requires:	horde >= 3.0
 Requires:	php-xml >= 3:4.1.0
 Requires:	webapps
 Requires:	webserver = apache
-Obsoletes:	horde-addons-turba
 Obsoletes:	%{_hordeapp}
+Obsoletes:	horde-addons-turba
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -74,15 +74,13 @@ Requires:	openldap-servers
 This package contains rfc2739.schema for openldap.
 
 To store freebusy information in the LDAP directory, you'll need the
-rfc2739.schema from
-<ftp://kalamazoolinux.org/pub/projects/awilliam/ldap/schema/>.
+rfc2739.schema from <http://www.whitemiceconsulting.com/node/42>.
 
 %description -n openldap-schema-rfc2739 -l pl
 Ten pakiet zawiera schemat rfc2739.schema dla openldap.
 
 Aby przechowywaæ informacje freebusy w bazie LDAP potrzebny jest
-schemat rfc2739.schema z
-<ftp://kalamazoolinux.org/pub/projects/awilliam/ldap/schema/>.
+schemat rfc2739.schema z <http://www.whitemiceconsulting.com/node/42>.
 
 %prep
 %setup -qcT -n %{?_snap:%{_hordeapp}-%{_snap}}%{!?_snap:%{_hordeapp}-%{version}%{?_rc:-%{_rc}}}
@@ -128,7 +126,7 @@ if [ "$1" = 1 ]; then
 IMPORTANT:
 If you are installing for the first time, You may need to
 create the Turba database tables. Look into directory
-/usr/share/doc/%{name}-%{version}/sql
+%{_docdir}/%{name}-%{version}/sql
 to find out how to do this for your database.
 
 For LDAP backend you need php-ldap package.
