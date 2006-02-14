@@ -1,7 +1,7 @@
 %define	_hordeapp turba
 #define	_snap	2005-10-17
-%define	_rc		rc1
-%define	_rel	1.1
+%define	_rc		rc2
+%define	_rel	0.1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
@@ -13,7 +13,7 @@ License:	ASL
 Group:		Applications/WWW
 #Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}.tar.gz
 Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
-# Source0-md5:	78f98d558be6dbb3abd1392e5722c393
+# Source0-md5:	6aea57a47d3b189a1e4ca631617ebf4f
 #Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{_hordeapp}-HEAD-%{_snap}.tar.gz
 Source1:	%{_hordeapp}.conf
 Source2:	%{_hordeapp}-trans.mo
