@@ -22,11 +22,9 @@ BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	tar >= 1:1.15.1
 Requires(triggerpostun):	sed >= 4.0
-Requires:	apache(mod_access)
 Requires:	horde >= 3.0
 Requires:	php-xml >= 3:4.1.0
 Requires:	webapps
-Requires:	webserver = apache
 Obsoletes:	%{_hordeapp}
 Obsoletes:	horde-addons-turba
 BuildArch:	noarch
@@ -105,8 +103,8 @@ cp -a lib locale templates themes $RPM_BUILD_ROOT%{_appdir}
 
 ln -s %{_sysconfdir} $RPM_BUILD_ROOT%{_appdir}/config
 ln -s %{_docdir}/%{name}-%{version}/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
-install %{SOURCE1} $RPM_BUILD_ROOT%{_webapps}/%{_webapp}/apache.conf
-install %{SOURCE1} $RPM_BUILD_ROOT%{_webapps}/%{_webapp}/httpd.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
 install %{SOURCE2} 		$RPM_BUILD_ROOT%{_appdir}/locale/pl_PL/LC_MESSAGES/turba.mo
 
@@ -146,21 +144,17 @@ include		%{schemadir}/rfc2739.schema
 	' /etc/openldap/slapd.conf
 fi
 
-if [ -f /var/lock/subsys/ldap ]; then
-    /etc/rc.d/init.d/ldap restart >&2
-fi
+%service -q ldap restart
 
 %postun -n openldap-schema-rfc2739
 if [ "$1" = "0" ]; then
 	if grep -q %{schemadir}/rfc2739.schema /etc/openldap/slapd.conf; then
 		sed -i -e '
-		/^include.*\/usr\/share\/openldap\/schema\/rfc2739.schema/d
+		/^include.*\/''usr\/share\/openldap\/schema\/rfc2739.schema/d
 		' /etc/openldap/slapd.conf
 	fi
 
-	if [ -f /var/lock/subsys/ldap ]; then
-		/etc/rc.d/init.d/ldap restart >&2 || :
-	fi
+	%service -q ldap restart
 fi
 
 %triggerin -- apache1
