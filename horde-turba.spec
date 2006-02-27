@@ -1,14 +1,14 @@
 %define	_hordeapp turba
 #define	_snap	2005-10-17
 %define	_rc		rc2
-%define	_rel	0.1
+%define	_rel	0.2
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
 Summary(pl):	Turba - Ksi±¿ka adresowa dla IMP-a
 Name:		horde-%{_hordeapp}
 Version:	2.1
-Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
+Release:	%{?_rc:1.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	ASL
 Group:		Applications/WWW
 #Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}.tar.gz
@@ -181,7 +181,7 @@ fi
 
 %service -q httpd restart
 
-%triggerpostun -- horde-%{_hordeapp} < 2.0.4-1.3, %{_hordeapp}
+%triggerpostun -- horde-%{_hordeapp} < 2.1-1.rc2.0.2, %{_hordeapp}
 for i in attributes.php conf.php menu.php prefs.php sources.php; do
 	if [ -f /etc/horde.org/%{_hordeapp}/$i.rpmsave ]; then
 		mv -f %{_sysconfdir}/$i{,.rpmnew}
