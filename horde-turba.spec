@@ -1,6 +1,6 @@
 %define	_hordeapp turba
 #define	_snap	2005-10-17
-%define	_rc		rc2
+#define	_rc		rc2
 %define	_rel	0.2
 #
 %include	/usr/lib/rpm/macros.php
@@ -11,9 +11,9 @@ Version:	2.1
 Release:	%{?_rc:1.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	ASL
 Group:		Applications/WWW
-#Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}.tar.gz
-Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
-# Source0-md5:	6aea57a47d3b189a1e4ca631617ebf4f
+Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}.tar.gz
+# Source0-md5:	2841adb1f8b7b17fd3e17cd14abdd36f
+#Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
 #Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{_hordeapp}-HEAD-%{_snap}.tar.gz
 Source1:	%{_hordeapp}.conf
 Source2:	%{_hordeapp}-trans.mo
