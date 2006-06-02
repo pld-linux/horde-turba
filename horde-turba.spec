@@ -19,7 +19,7 @@ Source1:	%{_hordeapp}.conf
 Source2:	%{_hordeapp}-trans.mo
 URL:		http://www.horde.org/turba/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
-BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	rpmbuild(macros) >= 1.304
 BuildRequires:	tar >= 1:1.15.1
 Requires(triggerpostun):	sed >= 4.0
 Requires:	horde >= 3.0
@@ -135,25 +135,12 @@ EOF
 fi
 
 %post -n openldap-schema-rfc2739
-if ! grep -q %{schemadir}/rfc2739.schema /etc/openldap/slapd.conf; then
-	sed -i -e '
-		/^include.*local.schema/{
-			i\
-include		%{schemadir}/rfc2739.schema
-		}
-	' /etc/openldap/slapd.conf
-fi
-
+%openldap_schema_register %{schemadir}/rfc2739.schema
 %service -q ldap restart
 
 %postun -n openldap-schema-rfc2739
 if [ "$1" = "0" ]; then
-	if grep -q %{schemadir}/rfc2739.schema /etc/openldap/slapd.conf; then
-		sed -i -e '
-		/^include.*\/''usr\/share\/openldap\/schema\/rfc2739.schema/d
-		' /etc/openldap/slapd.conf
-	fi
-
+	%openldap_schema_unregister %{schemadir}/rfc2739.schema
 	%service -q ldap restart
 fi
 
