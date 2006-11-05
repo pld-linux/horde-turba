@@ -1,18 +1,18 @@
 %define	_hordeapp turba
 #define	_snap	2005-10-17
 #define	_rc		rc2
-%define	_rel	2
+%define	_rel	0.1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
 Summary(pl):	Turba - Ksi±¿ka adresowa dla IMP-a
 Name:		horde-%{_hordeapp}
-Version:	2.1.2
+Version:	2.1.3
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	ASL
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}.tar.gz
-# Source0-md5:	6d07c2c9778c9ba363deca3f6d95d2a8
+# Source0-md5:	a0407717f3f64fb33f6a57e2244a12b4
 #Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
 #Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{_hordeapp}-HEAD-%{_snap}.tar.gz
 Source1:	%{_hordeapp}.conf
