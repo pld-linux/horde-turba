@@ -1,7 +1,7 @@
 %define	_hordeapp turba
 #define	_snap	2005-10-17
 #define	_rc		rc2
-%define	_rel	1
+%define	_rel	2
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
@@ -24,7 +24,8 @@ BuildRequires:	rpmbuild(macros) >= 1.304
 BuildRequires:	tar >= 1:1.15.1
 Requires(triggerpostun):	sed >= 4.0
 Requires:	horde >= 3.0
-Requires:	php-xml >= 3:4.1.0
+Requires:	php(xml)
+Requires:	php-common >= 3:4.1.0
 Requires:	webapps
 Obsoletes:	%{_hordeapp}
 Obsoletes:	horde-addons-turba
