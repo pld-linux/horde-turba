@@ -5,7 +5,7 @@
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
-Summary(pl):	Turba - Ksi±¿ka adresowa dla IMP-a
+Summary(pl.UTF-8):   Turba - KsiÄ…Å¼ka adresowa dla IMP-a
 Name:		horde-%{_hordeapp}
 Version:	2.1.3
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
@@ -53,19 +53,19 @@ lists from your addressbooks, which are handled transparently by IMP
 and other Horde applications. And there are Horde API functions to add
 and search for contacts.
 
-%description -l pl
-Turba to kompletna aplikacja do podstawowego zarz±dzania kontaktami.
-Dostêpne i dobrze przetestowane s± backendy ustawieñ SQL, LDAP i
-Horde. Mo¿na definiowaæ pola ksi±¿ki adresowej w bardzo elastyczny
-sposób, po prostu zmieniaj±c pliki konfiguracyjne. Kontakty mo¿na
-importowaæ/eksportowaæ z/do Pine, Mulberry, CSV, TSV i vCard. Mo¿na
-tworzyæ listy dystrybucyjne z ksi±¿ek adresowych, które s± obs³ugiwane
-w sposób przezroczysty przez IMP-a i inne aplikacje Horde. S± tak¿e
-funkcje API Horde do dodawania i wyszukiwania kontaktów.
+%description -l pl.UTF-8
+Turba to kompletna aplikacja do podstawowego zarzÄ…dzania kontaktami.
+DostÄ™pne i dobrze przetestowane sÄ… backendy ustawieÅ„ SQL, LDAP i
+Horde. MoÅ¼na definiowaÄ‡ pola ksiÄ…Å¼ki adresowej w bardzo elastyczny
+sposÃ³b, po prostu zmieniajÄ…c pliki konfiguracyjne. Kontakty moÅ¼na
+importowaÄ‡/eksportowaÄ‡ z/do Pine, Mulberry, CSV, TSV i vCard. MoÅ¼na
+tworzyÄ‡ listy dystrybucyjne z ksiÄ…Å¼ek adresowych, ktÃ³re sÄ… obsÅ‚ugiwane
+w sposÃ³b przezroczysty przez IMP-a i inne aplikacje Horde. SÄ… takÅ¼e
+funkcje API Horde do dodawania i wyszukiwania kontaktÃ³w.
 
 %package -n openldap-schema-rfc2739
 Summary:	LDAP schema for freebusy information
-Summary(pl):	Schemat LDAP do informacji freebusy
+Summary(pl.UTF-8):   Schemat LDAP do informacji freebusy
 Group:		Networking/Daemons
 Requires(post,postun):	sed >= 4.0
 Requires:	openldap-servers
@@ -76,10 +76,10 @@ This package contains rfc2739.schema for openldap.
 To store freebusy information in the LDAP directory, you'll need the
 rfc2739.schema from <http://www.whitemiceconsulting.com/node/42>.
 
-%description -n openldap-schema-rfc2739 -l pl
+%description -n openldap-schema-rfc2739 -l pl.UTF-8
 Ten pakiet zawiera schemat rfc2739.schema dla openldap.
 
-Aby przechowywaæ informacje freebusy w bazie LDAP potrzebny jest
+Aby przechowywaÄ‡ informacje freebusy w bazie LDAP potrzebny jest
 schemat rfc2739.schema z <http://www.whitemiceconsulting.com/node/42>.
 
 %prep
