@@ -5,7 +5,7 @@
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
-Summary(pl.UTF-8):   Turba - Książka adresowa dla IMP-a
+Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
 Name:		horde-%{_hordeapp}
 Version:	2.1.3
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
@@ -65,7 +65,7 @@ funkcje API Horde do dodawania i wyszukiwania kontaktów.
 
 %package -n openldap-schema-rfc2739
 Summary:	LDAP schema for freebusy information
-Summary(pl.UTF-8):   Schemat LDAP do informacji freebusy
+Summary(pl.UTF-8):	Schemat LDAP do informacji freebusy
 Group:		Networking/Daemons
 Requires(post,postun):	sed >= 4.0
 Requires:	openldap-servers
