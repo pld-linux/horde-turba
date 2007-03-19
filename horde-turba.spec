@@ -7,12 +7,12 @@
 Summary:	Turba - Address book for IMP
 Summary(pl):	Turba - Ksi±¿ka adresowa dla IMP-a
 Name:		horde-%{_hordeapp}
-Version:	2.1.2
+Version:	2.1.4
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	ASL
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}.tar.gz
-# Source0-md5:	6d07c2c9778c9ba363deca3f6d95d2a8
+# Source0-md5:	950b5645ee75ed0df7a0f594c5e7d285
 #Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
 #Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{_hordeapp}-HEAD-%{_snap}.tar.gz
 Source1:	%{_hordeapp}.conf
@@ -24,7 +24,8 @@ BuildRequires:	rpmbuild(macros) >= 1.304
 BuildRequires:	tar >= 1:1.15.1
 Requires(triggerpostun):	sed >= 4.0
 Requires:	horde >= 3.0
-Requires:	php-xml >= 3:4.1.0
+Requires:	php(xml)
+Requires:	php-common >= 3:4.1.0
 Requires:	webapps
 Obsoletes:	%{_hordeapp}
 Obsoletes:	horde-addons-turba
@@ -146,10 +147,10 @@ if [ "$1" = "0" ]; then
 	%service -q ldap restart
 fi
 
-%triggerin -- apache1
+%triggerin -- apache1 < 1.3.37-3, apache1-base
 %webapp_register apache %{_webapp}
 
-%triggerun -- apache1
+%triggerun -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
 %triggerin -- apache < 2.2.0, apache-base
