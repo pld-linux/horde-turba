@@ -1,23 +1,22 @@
 %define	_hordeapp turba
 #define	_snap	2005-10-17
-#define	_rc		rc2
+%define	_rc		rc1
 %define	_rel	1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
 Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
 Name:		horde-%{_hordeapp}
-Version:	2.1.5
+Version:	2.2
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	ASL
 Group:		Applications/WWW
-Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}.tar.gz
-# Source0-md5:	06a3185697c4d3bbd81fe49aaee90b0a
-#Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
+#Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}.tar.gz
+Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
+# Source0-md5:	825097517a49bfe136197534451aa005
 #Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{_hordeapp}-HEAD-%{_snap}.tar.gz
 Source1:	%{_hordeapp}.conf
 Source2:	%{_hordeapp}-trans.mo
-Patch0:		%{_hordeapp}-attrcache.patch
 URL:		http://www.horde.org/turba/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.304
@@ -85,7 +84,6 @@ schemat rfc2739.schema z <http://www.whitemiceconsulting.com/node/42>.
 %prep
 %setup -qcT -n %{?_snap:%{_hordeapp}-%{_snap}}%{!?_snap:%{_hordeapp}-%{version}%{?_rc:-%{_rc}}}
 tar zxf %{SOURCE0} --strip-components=1
-%patch0 -p1
 
 rm */.htaccess
 for i in config/*.dist; do
