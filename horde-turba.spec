@@ -1,7 +1,7 @@
 %define	_hordeapp turba
 #define	_snap	2005-10-17
 %define	_rc		rc1
-%define	_rel	2
+%define	_rel	3
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
