@@ -1,22 +1,22 @@
-%define	_hordeapp turba
-#define	_snap	2005-10-17
-%define	_rc		rc1
-%define	_rel	3
+%define		hordeapp turba
+#define		_snap	2005-10-17
+%define		subver	rc2
+%define		_rel	1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
 Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
-Name:		horde-%{_hordeapp}
+Name:		horde-%{hordeapp}
 Version:	2.2
-Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
+Release:	%{?subver:0.%{subver}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	ASL
 Group:		Applications/WWW
-#Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}.tar.gz
-Source0:	ftp://ftp.horde.org/pub/turba/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
-# Source0-md5:	825097517a49bfe136197534451aa005
-#Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{_hordeapp}-HEAD-%{_snap}.tar.gz
-Source1:	%{_hordeapp}.conf
-Source2:	%{_hordeapp}-trans.mo
+#Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}.tar.gz
+Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}-%{subver}.tar.gz
+# Source0-md5:	a1d29c012fa17c138633a5bfad3fed70
+#Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{hordeapp}-HEAD-%{_snap}.tar.gz
+Source1:	%{hordeapp}.conf
+Source2:	%{hordeapp}-trans.mo
 URL:		http://www.horde.org/turba/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.304
@@ -26,7 +26,7 @@ Requires:	horde >= 3.0
 Requires:	php(xml)
 Requires:	php-common >= 3:4.1.0
 Requires:	webapps
-Obsoletes:	%{_hordeapp}
+Obsoletes:	%{hordeapp}
 Obsoletes:	horde-addons-turba
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -36,10 +36,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautoreq	'pear(Horde.*)' 'pear(Net/IMSP.php)' 'pear(Net/IMSP/Utils.php)'
 
 %define		hordedir	/usr/share/horde
-%define		_appdir		%{hordedir}/%{_hordeapp}
+%define		_appdir		%{hordedir}/%{hordeapp}
 %define		schemadir	/usr/share/openldap/schema
 %define		_webapps	/etc/webapps
-%define		_webapp		horde-%{_hordeapp}
+%define		_webapp		horde-%{hordeapp}
 %define		_sysconfdir	%{_webapps}/%{_webapp}
 
 %description
@@ -82,7 +82,7 @@ Aby przechowywać informacje freebusy w bazie LDAP potrzebny jest
 schemat rfc2739.schema z <http://www.whitemiceconsulting.com/node/42>.
 
 %prep
-%setup -qcT -n %{?_snap:%{_hordeapp}-%{_snap}}%{!?_snap:%{_hordeapp}-%{version}%{?_rc:-%{_rc}}}
+%setup -qcT -n %{?_snap:%{hordeapp}-%{_snap}}%{!?_snap:%{hordeapp}-%{version}%{?subver:-%{subver}}}
 tar zxf %{SOURCE0} --strip-components=1
 
 rm */.htaccess
