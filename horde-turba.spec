@@ -1,7 +1,7 @@
 %define	_hordeapp turba
 #define	_snap	2005-10-17
 %define	_rc		rc1
-%define	_rel	1
+%define	_rel	2
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
@@ -156,44 +156,6 @@ fi
 
 %triggerun -- apache < 2.2.0, apache-base
 %webapp_unregister httpd %{_webapp}
-
-%triggerpostun -- turba <= 1.2.2-2
-if [ -f /etc/httpd/httpd.conf ]; then
-	sed -i -e '/^Include.*turba.conf/d' /etc/httpd/httpd.conf
-fi
-
-if [ -f /etc/httpd/turba.conf.rpmsave ]; then
-	cp -f %{_sysconfdir}/apache.conf{,.rpmnew}
-	mv -f /etc/httpd/turba.conf.rpmsave %{_sysconfdir}/apache.conf
-fi
-
-%service -q httpd restart
-
-%triggerpostun -- horde-%{_hordeapp} < 2.1-1.rc2.0.2, %{_hordeapp}
-for i in attributes.php conf.php menu.php prefs.php sources.php; do
-	if [ -f /etc/horde.org/%{_hordeapp}/$i.rpmsave ]; then
-		mv -f %{_sysconfdir}/$i{,.rpmnew}
-		mv -f /etc/horde.org/%{_hordeapp}/$i.rpmsave %{_sysconfdir}/$i
-	fi
-done
-
-if [ -f /etc/horde.org/apache-%{_hordeapp}.conf.rpmsave ]; then
-	mv -f %{_sysconfdir}/apache.conf{,.rpmnew}
-	mv -f %{_sysconfdir}/httpd.conf{,.rpmnew}
-	cp -f /etc/horde.org/apache-%{_hordeapp}.conf.rpmsave %{_sysconfdir}/apache.conf
-	cp -f /etc/horde.org/apache-%{_hordeapp}.conf.rpmsave %{_sysconfdir}/httpd.conf
-fi
-
-if [ -L /etc/apache/conf.d/99_horde-%{_hordeapp}.conf ]; then
-	/usr/sbin/webapp register apache %{_webapp}
-	rm -f /etc/apache/conf.d/99_horde-%{_hordeapp}.conf
-	%service -q apache reload
-fi
-if [ -L /etc/httpd/httpd.conf/99_horde-%{_hordeapp}.conf ]; then
-	/usr/sbin/webapp register httpd %{_webapp}
-	rm -f /etc/httpd/httpd.conf/99_horde-%{_hordeapp}.conf
-	%service -q httpd reload
-fi
 
 %files
 %defattr(644,root,root,755)
