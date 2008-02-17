@@ -1,6 +1,6 @@
 %define		hordeapp turba
 #define		_snap	2005-10-17
-%define		subver	rc2
+%define		subver	rc3
 %define		_rel	1
 #
 %include	/usr/lib/rpm/macros.php
@@ -13,7 +13,7 @@ License:	ASL
 Group:		Applications/WWW
 #Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}.tar.gz
 Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}-%{subver}.tar.gz
-# Source0-md5:	a1d29c012fa17c138633a5bfad3fed70
+# Source0-md5:	2c44c85510b7b24599a725ca0271fc25
 #Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{hordeapp}-HEAD-%{_snap}.tar.gz
 Source1:	%{hordeapp}.conf
 Source2:	%{hordeapp}-trans.mo
