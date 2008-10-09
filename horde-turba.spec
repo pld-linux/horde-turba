@@ -75,7 +75,7 @@ Aby przechowywać informacje freebusy w bazie LDAP potrzebny jest
 schemat rfc2739.schema z <http://www.whitemiceconsulting.com/node/42>.
 
 %prep
-%setup -q
+%setup -q -n %{_hordeapp}-h3-%{version}
 
 rm */.htaccess
 for i in config/*.dist; do
