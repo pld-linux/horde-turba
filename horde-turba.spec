@@ -1,20 +1,15 @@
 %define		hordeapp turba
-#define		_snap	2005-10-17
-%define		subver	rc3
-%define		_rel	1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
 Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
 Name:		horde-%{hordeapp}
-Version:	2.2
-Release:	%{?subver:0.%{subver}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
+Version:	2.3
+Release:	0.1
 License:	ASL
 Group:		Applications/WWW
-#Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}.tar.gz
-Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}-%{subver}.tar.gz
-# Source0-md5:	2c44c85510b7b24599a725ca0271fc25
-#Source0:	ftp://ftp.horde.org/pub/snaps/%{_snap}/%{hordeapp}-HEAD-%{_snap}.tar.gz
+Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}.tar.gz
+# Source0-md5:	da53ffb690fdaa53c324497d5c5be9b3
 Source1:	%{hordeapp}.conf
 Source2:	%{hordeapp}-trans.mo
 URL:		http://www.horde.org/turba/
@@ -82,8 +77,7 @@ Aby przechowywać informacje freebusy w bazie LDAP potrzebny jest
 schemat rfc2739.schema z <http://www.whitemiceconsulting.com/node/42>.
 
 %prep
-%setup -qcT -n %{?_snap:%{hordeapp}-%{_snap}}%{!?_snap:%{hordeapp}-%{version}%{?subver:-%{subver}}}
-tar zxf %{SOURCE0} --strip-components=1
+%setup -q
 
 rm */.htaccess
 for i in config/*.dist; do
