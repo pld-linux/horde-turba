@@ -5,7 +5,7 @@ Summary:	Turba - Address book for IMP
 Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
 Name:		horde-%{hordeapp}
 Version:	2.3
-Release:	0.1
+Release:	1
 License:	ASL
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}.tar.gz
@@ -74,7 +74,7 @@ Aby przechowywać informacje freebusy w bazie LDAP potrzebny jest
 schemat rfc2739.schema z <http://www.whitemiceconsulting.com/node/42>.
 
 %prep
-%setup -q -n %{_hordeapp}-h3-%{version}
+%setup -q -n %{hordeapp}-h3-%{version}
 
 rm */.htaccess
 for i in config/*.dist; do
@@ -91,7 +91,7 @@ cp -a *.php $RPM_BUILD_ROOT%{_appdir}
 cp -a config/* $RPM_BUILD_ROOT%{_sysconfdir}
 echo '<?php ?>' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.php
 touch $RPM_BUILD_ROOT%{_sysconfdir}/conf.php.bak
-cp -a lib locale templates themes $RPM_BUILD_ROOT%{_appdir}
+cp -a addressbooks js lib locale templates themes $RPM_BUILD_ROOT%{_appdir}
 cp -a docs/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
 
 ln -s %{_sysconfdir} $RPM_BUILD_ROOT%{_appdir}/config
@@ -161,8 +161,10 @@ fi
 
 %dir %{_appdir}
 %{_appdir}/*.php
+%{_appdir}/addressbooks
 %{_appdir}/config
 %{_appdir}/docs
+%{_appdir}/js
 %{_appdir}/lib
 %{_appdir}/locale
 %{_appdir}/templates
