@@ -16,7 +16,7 @@ URL:		http://www.horde.org/turba/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.304
 Requires(triggerpostun):	sed >= 4.0
-Requires:	horde >= 3.0
+Requires:	horde >= 3.2
 Requires:	php(xml)
 Requires:	php-common >= 3:4.1.0
 Requires:	webapps
