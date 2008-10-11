@@ -21,8 +21,8 @@ Requires:	php(xml)
 Requires:	php-common >= 3:4.1.0
 Requires:	webapps
 Suggests:	php-pear-Net_LDAP
-Obsoletes:	%{hordeapp}
 Obsoletes:	horde-addons-turba
+Obsoletes:	turba
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
