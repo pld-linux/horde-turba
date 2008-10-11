@@ -5,7 +5,7 @@ Summary:	Turba - Address book for IMP
 Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
 Name:		horde-%{hordeapp}
 Version:	2.3
-Release:	1
+Release:	2
 License:	ASL
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}.tar.gz
@@ -20,6 +20,7 @@ Requires:	horde >= 3.2
 Requires:	php(xml)
 Requires:	php-common >= 3:4.1.0
 Requires:	webapps
+Suggests:	php-pear-Net_LDAP
 Obsoletes:	%{hordeapp}
 Obsoletes:	horde-addons-turba
 BuildArch:	noarch
