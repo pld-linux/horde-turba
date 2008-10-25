@@ -5,13 +5,14 @@ Summary:	Turba - Address book for IMP
 Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
 Name:		horde-%{hordeapp}
 Version:	2.3
-Release:	2
+Release:	3
 License:	ASL
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}.tar.gz
 # Source0-md5:	da53ffb690fdaa53c324497d5c5be9b3
 Source1:	%{hordeapp}.conf
 Source2:	%{hordeapp}-trans.mo
+Patch0:		%{hordeapp}-search.patch
 URL:		http://www.horde.org/turba/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.304
@@ -76,6 +77,7 @@ schemat rfc2739.schema z <http://www.whitemiceconsulting.com/node/42>.
 
 %prep
 %setup -q -n %{hordeapp}-h3-%{version}
+%patch0 -p1
 
 rm */.htaccess
 for i in config/*.dist; do
