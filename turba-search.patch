@@ -1,0 +1,16 @@
+--- turba-h3-2.3/lib/api.php~	2008-10-25 17:49:17.000000000 +0200
++++ turba-h3-2.3/lib/api.php	2008-10-25 17:55:24.000000000 +0200
+@@ -1334,7 +1334,12 @@
+                 foreach ($fields[$source] as $field) {
+                     $criteria[$field] = trim($name);
+                 }
+-            }
++	    } else {
++                foreach ($cfgSources[$source]['search'] as $field) {
++                    $criteria[$field] = trim($name);
++                }
++	    }
++
+             if (count($criteria) == 0) {
+                 $criteria['name'] = trim($name);
+             }
