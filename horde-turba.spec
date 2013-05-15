@@ -5,13 +5,14 @@ Summary:	Turba - Address book for IMP
 Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
 Name:		horde-%{hordeapp}
 Version:	2.3.6
-Release:	2
+Release:	3
 License:	ASL
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}.tar.gz
 # Source0-md5:	40fe71bc9ca86b88b70fb006b7f61598
-Source1:	%{hordeapp}.conf
-Source2:	%{hordeapp}-trans.mo
+Source1:	%{hordeapp}-apache.conf
+Source2:	%{hordeapp}-httpd.conf
+Source3:	%{hordeapp}-trans.mo
 Patch0:		%{hordeapp}-search.patch
 URL:		http://www.horde.org/turba/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
@@ -24,6 +25,7 @@ Requires:	webapps
 Suggests:	php-pear-Net_LDAP
 Obsoletes:	horde-addons-turba
 Obsoletes:	turba
+Conflicts:	apache-base < 2.4.0-1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -99,9 +101,9 @@ cp -a docs/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
 
 ln -s %{_sysconfdir} $RPM_BUILD_ROOT%{_appdir}/config
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
-install %{SOURCE2} $RPM_BUILD_ROOT%{_appdir}/locale/pl_PL/LC_MESSAGES/turba.mo
+install %{SOURCE3} $RPM_BUILD_ROOT%{_appdir}/locale/pl_PL/LC_MESSAGES/turba.mo
 
 install -d $RPM_BUILD_ROOT%{schemadir}
 install scripts/ldap/rfc2739.schema $RPM_BUILD_ROOT%{schemadir}
@@ -145,10 +147,10 @@ fi
 %triggerun -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
-%triggerin -- apache < 2.2.0, apache-base
+%triggerin -- apache-base
 %webapp_register httpd %{_webapp}
 
-%triggerun -- apache < 2.2.0, apache-base
+%triggerun -- apache-base
 %webapp_unregister httpd %{_webapp}
 
 %files
