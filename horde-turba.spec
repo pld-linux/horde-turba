@@ -5,7 +5,7 @@ Summary:	Turba - Address book for IMP
 Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
 Name:		horde-%{hordeapp}
 Version:	2.3.6
-Release:	3
+Release:	4
 License:	ASL
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/turba/%{hordeapp}-h3-%{version}.tar.gz
@@ -29,7 +29,7 @@ Conflicts:	apache-base < 2.4.0-1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_noautoreq	'pear(Horde.*)' 'pear(Net/IMSP.php)' 'pear(Net/IMSP/Utils.php)'
+%define		_noautoreq_pear	Horde.* Net/IMSP.php Net/IMSP/Utils.php
 
 %define		hordedir	/usr/share/horde
 %define		_appdir		%{hordedir}/%{hordeapp}
