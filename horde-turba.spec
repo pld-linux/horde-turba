@@ -1,6 +1,5 @@
 %define		hordeapp turba
 #
-%include	/usr/lib/rpm/macros.php
 Summary:	Turba - Address book for IMP
 Summary(pl.UTF-8):	Turba - Książka adresowa dla IMP-a
 Name:		horde-%{hordeapp}
